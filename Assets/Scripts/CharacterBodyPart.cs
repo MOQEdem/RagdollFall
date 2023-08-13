@@ -9,15 +9,12 @@ public class CharacterBodyPart : MonoBehaviour
 
     public event Action<CharacterBodyPart> DestroyerTouched;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         if (_readyToBeDestroyed && !_isDestroyed)
-        {
-            if (other.TryGetComponent(out BodyPartDestroyer destroyer))
-            {
-                DestroyerTouched?.Invoke(this);
-            }
-        }
+            if (collision.relativeVelocity.sqrMagnitude > 8)
+                if (collision.rigidbody != null && collision.rigidbody.TryGetComponent(out BodyPartDestroyer destroyer))
+                    DestroyerTouched?.Invoke(this);
     }
 
     public void SetReadyStatus(bool isReady)

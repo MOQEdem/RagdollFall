@@ -4299,7 +4299,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -4322,7 +4322,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1374346514
 GameObject:
@@ -6470,6 +6470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652797177859}
   - component: {fileID: 919132148858768061}
+  - component: {fileID: 919132148858768066}
   - component: {fileID: 919132148858768060}
   - component: {fileID: 919132148858768059}
   - component: {fileID: 919132148858768064}
@@ -6605,6 +6606,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7022b1d87ffa3fe4188aa495f1a55494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &919132148858768066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148858768057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2689c322f14dbb44ab28e8d89b55d32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1998712024}
+  _floatingJoystick: {fileID: 627701609}
+  _speed: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

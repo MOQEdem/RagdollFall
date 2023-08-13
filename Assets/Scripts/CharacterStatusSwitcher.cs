@@ -1,13 +1,15 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterMover))]
+[RequireComponent(typeof(CharacterWalkMover))]
+[RequireComponent(typeof(CharacterFallMover))]
 [RequireComponent(typeof(CharacterAnimator))]
 [RequireComponent(typeof(CharacterPhysicsController))]
 [RequireComponent(typeof(BoxCollider))]
 public class CharacterStatusSwitcher : MonoBehaviour
 {
-    private CharacterMover _mover;
+    private CharacterWalkMover _walkMover;
+    private CharacterFallMover _fallMover;
     private CharacterAnimator _animator;
     private CharacterPhysicsController _physicsController;
     private BoxCollider _collider;
@@ -16,23 +18,27 @@ public class CharacterStatusSwitcher : MonoBehaviour
 
     private void Awake()
     {
-        _mover = GetComponent<CharacterMover>();
+        _walkMover = GetComponent<CharacterWalkMover>();
+        _fallMover = GetComponent<CharacterFallMover>();
         _animator = GetComponent<CharacterAnimator>();
         _physicsController = GetComponent<CharacterPhysicsController>();
         _collider = GetComponent<BoxCollider>();
 
+        _walkMover.enabled = true;
+        _fallMover.enabled = false;
         _collider.isTrigger = true;
 
-        // _physicsController.SetPhysicsStatus(false);
+        _physicsController.SetPhysicsStatus(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ActivatorOfFalling activator))
         {
-            _mover.SetFallingStatus();
+            _walkMover.enabled = false;
+            _fallMover.enabled = true;
             _animator.OffAnimation();
-            // _physicsController.SetPhysicsStatus(true);
+            _physicsController.SetPhysicsStatus(true);
             _collider.enabled = false;
 
             FallingStarted?.Invoke();
