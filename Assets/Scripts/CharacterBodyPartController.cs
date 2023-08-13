@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterBodyPartController : MonoBehaviour
 {
+    [SerializeField][Range(0, 20)] private float _velocityToDestroyPart;
+
     private CharacterBodyPart[] _characterBodyParts;
     private float _delay = 2f;
     private Coroutine _waitingDelay;
@@ -20,6 +22,7 @@ public class CharacterBodyPartController : MonoBehaviour
         for (int i = 0; i < _characterBodyParts.Length; i++)
         {
             _characterBodyParts[i].DestroyerTouched += OnBodyPartTouched;
+            _characterBodyParts[i].SetRelativeVelocityNeededToDestroyPart(_velocityToDestroyPart);
         }
     }
 

@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _bodyPartCamera;
 
     private Coroutine _waitingDelay;
+
+    public event Action<float> DestroyedBodyPartShown;
 
     private void Awake()
     {
@@ -49,6 +52,7 @@ public class CameraController : MonoBehaviour
 
         if (_waitingDelay == null)
         {
+            DestroyedBodyPartShown?.Invoke(timeToDelay);
             _waitingDelay = StartCoroutine(WaitingDelay(timeToDelay));
         }
     }
