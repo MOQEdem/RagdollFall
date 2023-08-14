@@ -34,8 +34,6 @@ public class SlowMoController : MonoBehaviour
         {
             timeToSlowDone -= Time.deltaTime;
 
-            Debug.Log(Time.fixedDeltaTime);
-
             if (Time.timeScale >= 0.5)
                 Time.timeScale -= Time.deltaTime;
 
