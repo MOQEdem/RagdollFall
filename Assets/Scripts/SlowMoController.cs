@@ -27,7 +27,7 @@ public class SlowMoController : MonoBehaviour
 
     private IEnumerator SlowingTime(float timeToDelay)
     {
-        for (float t = 0f; t < 1f; t += Time.unscaledDeltaTime / timeToDelay)
+        for (float t = 0f; t < 1f; t += Time.deltaTime / timeToDelay)
         {
             float timeScale = _animationCurve.Evaluate(t);
             Time.timeScale = timeScale;
