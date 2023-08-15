@@ -9000,7 +9000,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1998712024}
   _floatingJoystick: {fileID: 8170153793480251244}
   _speed: 20
-  _isNeedRotation: 1
+  _isNeedRotation: 0
   _rotationSpeed: 20
 --- !u!1 &8170153792352260854
 GameObject:

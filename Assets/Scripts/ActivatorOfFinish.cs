@@ -8,9 +8,6 @@ public class ActivatorOfFinish : MonoBehaviour
     {
         if (other.TryGetComponent(out CharacterBodyPart part))
         {
-            Time.timeScale = 1;
-            Time.fixedDeltaTime = 0.02f;
-
             SceneManager.LoadScene(0);
         }
     }

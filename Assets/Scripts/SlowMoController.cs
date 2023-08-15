@@ -9,6 +9,12 @@ public class SlowMoController : MonoBehaviour
     private Coroutine _slowingTime;
     private float _normalFixedDeltaTimeScale = 0.02f;
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = 0.02f;
+    }
+
     private void OnEnable()
     {
         _cameraController.DestroyedBodyPartShown += OnDestroyedBodyPartShown;
