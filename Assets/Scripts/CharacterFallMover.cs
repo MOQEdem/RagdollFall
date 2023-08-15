@@ -10,7 +10,7 @@ public class CharacterFallMover : MonoBehaviour
     {
         if (_floatingJoystick.Direction != Vector2.zero)
         {
-            _rigidbody.velocity += new Vector3(_floatingJoystick.Direction.x, 0f, _floatingJoystick.Direction.y) * _speed * Time.fixedDeltaTime;
+            _rigidbody.velocity += _floatingJoystick.DirectionVector3 * _speed * Time.fixedDeltaTime;
         }
     }
 }

@@ -1,19 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class BodyPartDestroyer : MonoBehaviour
 {
-    private BoxCollider _collider;
-    private Rigidbody _rigidbody;
+    private Collider _collider;
 
     private void Awake()
     {
-        _collider = GetComponent<BoxCollider>();
-        _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
 
-        _collider.isTrigger = true;
-        _rigidbody.isKinematic = true;
-        _rigidbody.useGravity = false;
+        _collider.isTrigger = false;
     }
 }

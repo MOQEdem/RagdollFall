@@ -18,8 +18,9 @@ public class CharacterWalkMover : MonoBehaviour
         if (_floatingJoystick.Direction != Vector2.zero)
         {
             _animator.SetRunningStatus(true);
-            transform.rotation = Quaternion.LookRotation(new Vector3(_floatingJoystick.Direction.x, 0f, _floatingJoystick.Direction.y), Vector3.up);
-            transform.position += new Vector3(_floatingJoystick.Direction.x, 0f, _floatingJoystick.Direction.y) * _speed * Time.deltaTime;
+
+            transform.rotation = Quaternion.LookRotation(_floatingJoystick.DirectionVector3, Vector3.up);
+            transform.position += _floatingJoystick.DirectionVector3 * _speed * Time.deltaTime;
         }
         else
         {

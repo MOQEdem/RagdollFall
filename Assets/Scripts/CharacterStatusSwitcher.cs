@@ -1,47 +1,41 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterWalkMover))]
-[RequireComponent(typeof(CharacterFallMover))]
-[RequireComponent(typeof(CharacterAnimator))]
-[RequireComponent(typeof(CharacterPhysicsController))]
-[RequireComponent(typeof(BoxCollider))]
 public class CharacterStatusSwitcher : MonoBehaviour
 {
-    private CharacterWalkMover _walkMover;
-    private CharacterFallMover _fallMover;
-    private CharacterAnimator _animator;
-    private CharacterPhysicsController _physicsController;
-    private BoxCollider _collider;
+    [SerializeField] private CharacterWalkMover _walkMover;
+    [SerializeField] private CharacterFallMover _fallMover;
+    [SerializeField] private CharacterAnimator _animator;
+    [SerializeField] private CharacterBodyPartController _physicsController;
+    [SerializeField] private Collider _collider;
 
     public Action FallingStarted;
 
     private void Awake()
     {
-        _walkMover = GetComponent<CharacterWalkMover>();
-        _fallMover = GetComponent<CharacterFallMover>();
-        _animator = GetComponent<CharacterAnimator>();
-        _physicsController = GetComponent<CharacterPhysicsController>();
-        _collider = GetComponent<BoxCollider>();
-
         _walkMover.enabled = true;
         _fallMover.enabled = false;
         _collider.isTrigger = true;
-
-        _physicsController.SetPhysicsStatus(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void FixedUpdate()
     {
-        if (other.TryGetComponent(out ActivatorOfFalling activator))
+        if (!Physics.Raycast(transform.position, -transform.up, 1))
         {
-            _walkMover.enabled = false;
-            _fallMover.enabled = true;
-            _animator.OffAnimation();
-            _physicsController.SetPhysicsStatus(true);
-            _collider.enabled = false;
+            SetaFallStatus();
 
-            FallingStarted?.Invoke();
+            this.enabled = false;
         }
+    }
+
+    private void SetaFallStatus()
+    {
+        _walkMover.enabled = false;
+        _fallMover.enabled = true;
+        _animator.OffAnimation();
+        _physicsController.MakePhysical();
+        _collider.enabled = false;
+
+        FallingStarted?.Invoke();
     }
 }

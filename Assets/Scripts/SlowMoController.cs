@@ -4,6 +4,7 @@ using UnityEngine;
 public class SlowMoController : MonoBehaviour
 {
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private AnimationCurve _animationCurve;
 
     private Coroutine _slowingTime;
     private float _normalFixedDeltaTimeScale = 0.02f;
@@ -26,36 +27,11 @@ public class SlowMoController : MonoBehaviour
 
     private IEnumerator SlowingTime(float timeToDelay)
     {
-        var quarterOfDelay = timeToDelay / 4;
-
-        var timeToSlowDone = quarterOfDelay;
-
-        while (timeToSlowDone > 0)
+        for (float t = 0f; t < 1f; t += Time.unscaledDeltaTime / timeToDelay)
         {
-            timeToSlowDone -= Time.deltaTime;
-
-            if (Time.timeScale >= 0.5)
-                Time.timeScale -= Time.deltaTime;
-
-            if (Time.fixedDeltaTime >= 0.01f)
-                Time.fixedDeltaTime -= Time.deltaTime * _normalFixedDeltaTimeScale;
-
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(quarterOfDelay * 2);
-
-        var timeToSpeedUp = quarterOfDelay;
-
-        while (timeToSpeedUp > 0)
-        {
-            timeToSpeedUp -= Time.deltaTime;
-
-            if (Time.timeScale < 1)
-                Time.timeScale += Time.deltaTime;
-
-            if (Time.fixedDeltaTime < 0.02f)
-                Time.fixedDeltaTime += Time.deltaTime * _normalFixedDeltaTimeScale;
+            float timeScale = _animationCurve.Evaluate(t);
+            Time.timeScale = timeScale;
+            Time.fixedDeltaTime = timeScale * _normalFixedDeltaTimeScale;
 
             yield return null;
         }
