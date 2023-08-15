@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CharacterBodyPartController _bodyPartController;
     [Space]
     [Header("Cameras")]
+    [SerializeField] private CinemachineBrain _mainCamera;
     [SerializeField] private CinemachineVirtualCamera _walkCamera;
     [SerializeField] private CinemachineVirtualCamera _fallCamera;
     [SerializeField] private CinemachineVirtualCamera _bodyPartCamera;
@@ -23,6 +24,7 @@ public class CameraController : MonoBehaviour
         _walkCamera.Priority = 1;
         _fallCamera.Priority = 0;
         _bodyPartCamera.Priority = 0;
+        _mainCamera.m_UpdateMethod = CinemachineBrain.UpdateMethod.LateUpdate;
     }
 
     private void OnEnable()
@@ -40,6 +42,8 @@ public class CameraController : MonoBehaviour
     private void SwitchToFallCamera()
     {
         _switcher.FallingStarted -= SwitchToFallCamera;
+
+        _mainCamera.m_UpdateMethod = CinemachineBrain.UpdateMethod.FixedUpdate;
 
         _walkCamera.Priority = 0;
         _fallCamera.Priority = 1;

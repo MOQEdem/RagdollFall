@@ -17,7 +17,7 @@ public class CharacterFallMover : MonoBehaviour
             _rigidbody.velocity += _floatingJoystick.DirectionVector3 * _speed * Time.fixedDeltaTime;
         }
 
-        if (_isNeedRotation && Vector3.Dot(_rigidbody.transform.forward, Vector3.up) < 0.97)
+        if (_isNeedRotation)
         {
             var nextRotation = Quaternion.RotateTowards(_rigidbody.transform.rotation, Quaternion.Euler(-90, _rigidbody.transform.rotation.y, -90), _rotationSpeed);
 

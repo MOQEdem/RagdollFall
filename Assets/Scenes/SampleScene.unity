@@ -709,6 +709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _switcher: {fileID: 919132148858768064}
   _bodyPartController: {fileID: 919132148858768065}
+  _mainCamera: {fileID: 963194229}
   _walkCamera: {fileID: 1395989694}
   _fallCamera: {fileID: 820527635}
   _bodyPartCamera: {fileID: 730584812}
@@ -4828,7 +4829,7 @@ MonoBehaviour:
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 0.4
@@ -7881,7 +7882,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998712022}
   serializedVersion: 4
-  m_Mass: 30
+  m_Mass: 60
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -8899,7 +8900,6 @@ GameObject:
   - component: {fileID: 919132148858768060}
   - component: {fileID: 919132148858768064}
   - component: {fileID: 919132148858768065}
-  - component: {fileID: 919132148858768063}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8933,27 +8933,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _floatingJoystick: {fileID: 8170153793480251244}
   _speed: 2
---- !u!65 &919132148858768063
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148858768057}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.3, z: 0.5}
-  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!114 &919132148858768064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8970,7 +8949,6 @@ MonoBehaviour:
   _fallMover: {fileID: 919132148858768066}
   _animator: {fileID: 919132148858768060}
   _physicsController: {fileID: 919132148858768065}
-  _collider: {fileID: 919132148858768063}
 --- !u!114 &919132148858768065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8999,9 +8977,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1998712024}
   _floatingJoystick: {fileID: 8170153793480251244}
-  _speed: 20
-  _isNeedRotation: 0
-  _rotationSpeed: 20
+  _speed: 10
+  _isNeedRotation: 1
+  _rotationSpeed: 12
 --- !u!1 &8170153792352260854
 GameObject:
   m_ObjectHideFlags: 0

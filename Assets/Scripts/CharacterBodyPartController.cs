@@ -21,6 +21,7 @@ public class CharacterBodyPartController : MonoBehaviour
         for (int i = 0; i < _rigidbodies.Length; i++)
         {
             _rigidbodies[i].isKinematic = true;
+            _rigidbodies[i].useGravity = false;
         }
     }
 
@@ -46,6 +47,7 @@ public class CharacterBodyPartController : MonoBehaviour
         for (int i = 0; i < _rigidbodies.Length; i++)
         {
             _rigidbodies[i].isKinematic = false;
+            _rigidbodies[i].useGravity = true;
         }
     }
 
