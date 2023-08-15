@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour
         _fallCamera.Priority = 0;
         _bodyPartCamera.Priority = 0;
         _mainCamera.m_UpdateMethod = CinemachineBrain.UpdateMethod.LateUpdate;
+        _mainCamera.m_BlendUpdateMethod = CinemachineBrain.BrainUpdateMethod.LateUpdate;
     }
 
     private void OnEnable()
@@ -44,6 +45,7 @@ public class CameraController : MonoBehaviour
         _switcher.FallingStarted -= SwitchToFallCamera;
 
         _mainCamera.m_UpdateMethod = CinemachineBrain.UpdateMethod.FixedUpdate;
+        _mainCamera.m_BlendUpdateMethod = CinemachineBrain.BrainUpdateMethod.FixedUpdate;
 
         _walkCamera.Priority = 0;
         _fallCamera.Priority = 1;
