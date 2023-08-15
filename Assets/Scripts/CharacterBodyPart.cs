@@ -9,6 +9,13 @@ public class CharacterBodyPart : MonoBehaviour
 
     public event Action<CharacterBodyPart> DestroyerTouched;
 
+    public Rigidbody Rigidbody { get; private set; }
+
+    private void Awake()
+    {
+        Rigidbody = GetComponent<Rigidbody>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!_isDestroyed)

@@ -7,7 +7,6 @@ public class CharacterBodyPartController : MonoBehaviour
     [SerializeField][Range(0, 20)] private float _velocityToDestroyPart;
     [SerializeField] private float _delayBetweenDestroyability = 2f;
 
-    private Rigidbody[] _rigidbodies;
     private CharacterBodyPart[] _characterBodyParts;
     private Coroutine _waitingDelay;
 
@@ -16,13 +15,6 @@ public class CharacterBodyPartController : MonoBehaviour
     private void Awake()
     {
         _characterBodyParts = GetComponentsInChildren<CharacterBodyPart>();
-        _rigidbodies = GetComponentsInChildren<Rigidbody>();
-
-        for (int i = 0; i < _rigidbodies.Length; i++)
-        {
-            _rigidbodies[i].isKinematic = true;
-            _rigidbodies[i].useGravity = false;
-        }
     }
 
     private void OnEnable()
@@ -42,12 +34,21 @@ public class CharacterBodyPartController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < _characterBodyParts.Length; i++)
+        {
+            _characterBodyParts[i].Rigidbody.isKinematic = true;
+            _characterBodyParts[i].Rigidbody.useGravity = false;
+        }
+    }
+
     public void MakePhysical()
     {
-        for (int i = 0; i < _rigidbodies.Length; i++)
+        for (int i = 0; i < _characterBodyParts.Length; i++)
         {
-            _rigidbodies[i].isKinematic = false;
-            _rigidbodies[i].useGravity = true;
+            _characterBodyParts[i].Rigidbody.isKinematic = false;
+            _characterBodyParts[i].Rigidbody.useGravity = true;
         }
     }
 
